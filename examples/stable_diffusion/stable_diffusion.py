@@ -22,9 +22,9 @@ def text_imgAsync(data):
     with zipfile.ZipFile(file, 'r') as zip_ref:
         zip_ref.extractall(".")
     os.remove(file)
-    return "./samples/00000.png", \
-        "./samples/00001.png", "./samples/00002.png", "./samples/00003.png", \
-        "./samples/00004.png", "./samples/00005.png","grid-0000.png"
+    return "./00000.png", \
+        "./00001.png", "./00002.png", "./00003.png", \
+        "./00004.png", "./00005.png","grid-0000.png"
 
 def text_imgSync(text):
     data=bytes('"'+text+'"',"utf-8")

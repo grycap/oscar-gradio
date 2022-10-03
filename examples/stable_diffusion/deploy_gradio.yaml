@@ -1,22 +1,31 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: gradio-stable-diffusion
   labels:
     app: gradio-stable-diffusion
 spec:
-  containers:
-    - name: stable-diffusion
-      image: ghcr.io/grycap/gradio_stable_diffusion
-      env:
-        - name: oscar_endpoint
-          value: "https://eager-wright9.im.grycap.net"
-        - name: port
-          value: "30001"
-      ports:
-        - name: web
-          containerPort: 30001
-          protocol: TCP
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gradio-stable-diffusion
+  template:
+    metadata:
+        labels:
+          app: gradio-stable-diffusion
+    spec:
+      containers:
+        - name: gradio-stable-diffusion
+          image: ghcr.io/grycap/gradio_stable_diffusion
+          env:
+            - name: oscar_endpoint
+              value: "https://eager-wright9.im.grycap.net"
+            - name: port
+              value: "30001"
+          ports:
+            - name: web
+              containerPort: 30001
+              protocol: TCP
 ---
 apiVersion: v1
 kind: Service
