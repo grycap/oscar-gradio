@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: stable-diffusion
+  name: gradio-stable-diffusion
   labels:
-    app: stable-diffusion
+    app: gradio-stable-diffusion
 spec:
   containers:
     - name: stable-diffusion
-      image: ghcr.io/grycap/stable_diffusion
+      image: ghcr.io/grycap/gradio_stable_diffusion
       env:
         - name: oscar_endpoint
           value: "https://eager-wright9.im.grycap.net"
@@ -24,7 +24,7 @@ metadata:
   name: service-stable-diffusion  
 spec:
   selector:
-    app: stable-diffusion
+    app: gradio-stable-diffusion
   ports:
     - protocol: TCP
       port: 9000
