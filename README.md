@@ -8,7 +8,7 @@ Create a demo in localhost with [the components that Gradio provides](https://gr
 
 ## Build Docker
 
-Once the local demo works, make some changes to the file. OSCAR cluster end-point variable must be an environment variable with the value assigned in deploy time. Change the parameters of the [].launch()](https://gradio.app/docs/#launch) function by introducing `server_name` with the value `0.0.0.0`, `server_port` as a environment variable and the `auth` parameter to create an authentication process. This authentication could be the same as the OSCAR cluster. When all those changes are made, build the Docker. Try that works with the command:
+Once the local demo works, make some changes to the file. OSCAR cluster end-point variable must be an environment variable with the value assigned in deploy time. Change the parameters of the [.launch()](https://gradio.app/docs/#launch) function by introducing `server_name` with the value `0.0.0.0`, `server_port` as a environment variable and the `auth` parameter to create an authentication process. This authentication could be the same as the OSCAR cluster. When all those changes are made, build the Docker. Try that works with the command:
 
 ```docker run -it -e oscar_endpoint='{oscar_endpoint}' -e port="7000" -p 7000:7000 ghcr.io/grycap/{image_name}```
 
