@@ -2,11 +2,11 @@
 
 ## Deploy the cluster
 
-Follow the deployment on (OSCAR documentation)[https://docs.oscar.grycap.net/deploy-im-dashboard/]. Remember that the cluster must have GPU support in this case, so in OSCAR Parameters, put `Flag to add NVIDIA support` as True.
+Follow the deployment on [OSCAR documentation](https://docs.oscar.grycap.net/deploy-im-dashboard/). Remember that the cluster must have GPU support in this case, so in OSCAR Parameters, put `Flag to add NVIDIA support` as True.
 
 ## Deploy the service
 
-To deploy the service, use (OSCAR-CLI)[https://docs.oscar.grycap.net/oscar-cli] with the example of (stable-diffusion)[https://github.com/grycap/oscar/tree/master/examples/stable-diffusion]
+To deploy the service, use [OSCAR-CLI](https://docs.oscar.grycap.net/oscar-cli) with the example of [stable-diffusion](https://github.com/grycap/oscar/tree/master/examples/stable-diffusion)
 
 ``` oscar-cli apply filename.yaml ```
 
