@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stable-diffusion
+  labels:
+    app: stable-diffusion
+spec:
+  containers:
+    - name: stable-diffusion
+      image: ghcr.io/grycap/stable_diffusion
+      env:
+        - name: oscar_endpoint
+          value: "https://eager-wright9.im.grycap.net"
+        - name: port
+          value: "30001"
+      ports:
+        - name: web
+          containerPort: 30001
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-stable-diffusion  
+spec:
+  selector:
+    app: stable-diffusion
+  ports:
+    - protocol: TCP
+      port: 9000
+      name: service-port
+      targetPort: 30001
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-stable-diffusion
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - gradio.eager-wright9.im.grycap.net
+    secretName: gradio.eager-wright9.im.grycap.net
+  rules:
+  - host: gradio.eager-wright9.im.grycap.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-stable-diffusion
+            port:
+              number: 9000
