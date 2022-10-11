@@ -19,7 +19,7 @@ spec:
           image: ghcr.io/grycap/gradio_stable_diffusion
           env:
             - name: oscar_endpoint
-              value: "https://eager-wright9.im.grycap.net"
+              value: "https://focused-boyd8.im.grycap.net"
             - name: port
               value: "30001"
           ports:
@@ -51,10 +51,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - gradio.eager-wright9.im.grycap.net
-    secretName: gradio.eager-wright9.im.grycap.net
+    - gradio.focused-boyd8.im.grycap.net
+    secretName: gradio.focused-boyd8.im.grycap.net
   rules:
-  - host: gradio.eager-wright9.im.grycap.net
+  - host: gradio.focused-boyd8.im.grycap.net
     http:
       paths:
       - path: /

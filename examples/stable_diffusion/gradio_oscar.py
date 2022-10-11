@@ -108,6 +108,7 @@ class gradiooscar:
                     break
         object=info["Records"][0]["s3"]["object"]["key"]
         self.minio.fget_object(bucketname, object, resultfile)
+        return  resultfile
 
         
     def minio_waitAndDownloadSome(self,bucketname,bucketfolder,times,folder):
