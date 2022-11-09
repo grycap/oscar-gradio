@@ -40,7 +40,7 @@ Gradio builds an interface web with Python.
 So, import the Python library [oscar-python](https://pypi.org/project/oscar-python) to interact with the OSCAR cluster.
 In this case, an environment variable indicates if the input should be in JSON format.
 So first, invoke the `get_service` function to get the information of the service and then parse the response of the service information.
-After that, parse the input text. Now appear three possibilities:
+After that, parse the input text. Now, three possibilities exist:
 
 * Call the service if the service needs JSON and the input text is in JSON format.
 * Change the input if the service needs JSON and the input text is not in JSON format.
@@ -91,23 +91,22 @@ def authentication(login,password):
 
 ### Environment variable
 
-This Gradio app that uses the cowsay service has two environmental variables. The first environment variable, `oscar_endpoint,` contains where the OSCAR cluster deployed. And the second environment variable is `port`, which specifies which port Gradio will be deployed.
+This Gradio app that uses the cowsay service has two environment variables. The first environment variable, `oscar_endpoint,` contains where the OSCAR cluster deployed. And the second environment variable is `port`, which specifies which port Gradio will be deployed.
 
 ## Cowsay container works on your localhost
 
 Change the variable `oscar_endpoint` to your endpoint OSCAR.
 And try the Gradio app with the following command.
 This command will create and run in localhost the Gradio app container that interacts with the cowsay OSCAR service.
-Once the container is running, the web interface can be accessed in the `http://0.0.0.0:7000` direction.
+Once the container is running, the web interface can be accessed in `http://0.0.0.0:7000`.
 
 ```docker run -it -e oscar_endpoint='{oscar_endpoint}' -e port="7000" -p 7000:7000 ghcr.io/grycap/gradio_cowsay```
 
 ## Deploy Gradio with cowsay
 
-The Kubernetes file is already created. To make it work. Change the `oscar_endpoint` environment value to your OSCAR cluster:`spec.containers.env.value`.
-And add the subdomain in the Ingress component in the fields:`spec.tls.hosts`, `spec.tls.hosts.secretName`, and `spec.rules.host`.
-Then [pass the YAML file](https://github.com/grycap/oscar-gradio#pass-file) to the OSCAR cluster
-and [connect it via ssh](https://github.com/grycap/oscar-gradio#connect-to-oscar-via-ssh).
-Finally, apply the changes to Kubernetes.
+The Kubernetes file is already created. To make it work, change the `oscar_endpoint` environment value to your OSCAR cluster:`spec.containers.env.value`.
+Also, add the subdomain in the Ingress component in the fields:`spec.tls.hosts`, `spec.tls.hosts.secretName`, and `spec.rules.host`.
+
+Then apply the changes to Kubernetes.
 
 ``` kubectl apply -f deploy_gradio.yaml ```
