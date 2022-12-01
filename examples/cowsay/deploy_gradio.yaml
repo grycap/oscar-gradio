@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gradio-stable-diffusion
+  name: gradio-cowsay
   labels:
-    app: gradio-stable-diffusion
+    app: gradio-cowsay
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gradio-stable-diffusion
+      app: gradio-cowsay
   template:
     metadata:
         labels:
-          app: gradio-stable-diffusion
+          app: gradio-cowsay
     spec:
       containers:
-        - name: gradio-stable-diffusion
-          image: ghcr.io/grycap/gradio_stable_diffusion
+        - name: gradio-cowsay
+          image: ghcr.io/grycap/gradio_cowsay
           env:
             - name: oscar_endpoint
               value: "https://<oscar-public-domain>"
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-stable-diffusion  
+  name: service-gradio-cowsay  
 spec:
   selector:
-    app: gradio-stable-diffusion
+    app: gradio-gradio-cowsay
   ports:
     - protocol: TCP
       port: 9000
@@ -44,7 +44,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-stable-diffusion
+  name: ingress-gradio-cowsay
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -52,16 +52,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - stable.<public-domain>
-    secretName: stable.<public-domain>
+    - cowsay.<public-domain>
+    secretName: cowsay.<public-domain>
   rules:
-  - host: stable.<public-domain>
+  - host: cowsay.<public-domain>
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: service-stable-diffusion
+            name: service-gradio-cowsay
             port:
               number: 9000
