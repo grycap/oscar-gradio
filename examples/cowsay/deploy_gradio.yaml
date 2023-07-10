@@ -22,6 +22,8 @@ spec:
               value: "https://<oscar-public-domain>"
             - name: port
               value: "30001"
+            - name: ssl
+              value: "True"
           ports:
             - name: web
               containerPort: 30001
