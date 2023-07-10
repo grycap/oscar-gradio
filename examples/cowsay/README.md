@@ -100,7 +100,7 @@ And try the Gradio app with the following command.
 This command will create and run in localhost the Gradio app container that interacts with the cowsay OSCAR service.
 Once the container is running, the web interface can be accessed in `http://0.0.0.0:7000`.
 
-```docker run -it -e oscar_endpoint='{oscar_endpoint}' -e port="7000" -p 7000:7000 ghcr.io/grycap/gradio_cowsay```
+```docker run -it -e oscar_endpoint='{oscar_endpoint}' -e port="7000" -e ssl="{True | False}" -p 7000:7000 ghcr.io/grycap/gradio_cowsay```
 
 ## Deploy Gradio with cowsay
 
